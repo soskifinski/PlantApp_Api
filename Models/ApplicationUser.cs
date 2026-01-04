@@ -7,6 +7,6 @@ namespace PlantApp.Api.Models
         public int Id { get; set; }
         public string Email { get; set; } = null!;
 
-        public ICollection<UserPlant> Plants { get; set; } = new List<UserPlant>();
+        public ICollection<UserPlant> UserPlants { get; set; } = new List<UserPlant>();
     }
 }

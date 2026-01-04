@@ -9,6 +9,6 @@
         public int UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
-        public ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();
+        public ICollection<Task> Tasks { get; set; } = new List<Task>();
     }
 }
