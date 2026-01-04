@@ -24,8 +24,8 @@ namespace PlantApp.Api.Controller
         [HttpGet]
         public async Task<IEnumerable<UserPlant>> Get()
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            return await _db.UserPlants.Where(p => p.UserId == userId).ToListAsync();
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _db.UserPlants.Where(p => p.UserId.Equals(userId)).ToListAsync();
         }
     }
 

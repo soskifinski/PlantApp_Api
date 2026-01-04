@@ -4,9 +4,6 @@ namespace PlantApp.Api.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public int Id { get; set; }
-        public string Email { get; set; } = null!;
-
-        public ICollection<UserPlant> UserPlants { get; set; } = new List<UserPlant>();
+        public virtual ICollection<UserPlant> UserPlants { get; set; } = new List<UserPlant>();
     }
 }

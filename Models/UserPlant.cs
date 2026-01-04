@@ -1,4 +1,6 @@
-﻿namespace PlantApp.Api.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PlantApp.Api.Models
 {
     public class UserPlant
     {
@@ -6,9 +8,9 @@
         public string Name { get; set; } = null!;
         public bool Edible { get; set; }
 
-        public int UserId { get; set; }
-        public ApplicationUser User { get; set; } = null!;
-
-        public ICollection<Task> Tasks { get; set; } = new List<Task>();
+        [Required] 
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; } = null!;
+        public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
     }
 }

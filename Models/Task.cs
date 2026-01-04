@@ -8,6 +8,6 @@
         public bool Status { get; set; }
 
         public int UserPlantId { get; set; }
-        public UserPlant UserPlant { get; set; } = null!;
+        public virtual UserPlant UserPlant { get; set; } = null!;
     }
 }
