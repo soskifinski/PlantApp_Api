@@ -9,11 +9,12 @@ using PlantApp.Api.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 // Cors
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("Angular",
+    options.AddPolicy(name: MyAllowSpecificOrigins,
         policy => policy
             .WithOrigins("https://localhost:4200")
             .AllowAnyHeader()
@@ -52,7 +53,7 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-app.UseCors("Angular");
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

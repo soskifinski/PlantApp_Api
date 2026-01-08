@@ -23,7 +23,7 @@ namespace PlantApp.Api.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(@"Server=localhost\\SQLEXPRESS;Database=PlantAppDb");            
+                optionsBuilder.UseSqlServer(@"Server=localhost\\SQLEXPRESS02;Database=PlantAppDb");            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
