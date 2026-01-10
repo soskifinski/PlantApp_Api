@@ -1,10 +1,12 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 using PlantApp.Api.Context;
+using PlantApp.Api.Data;
 using PlantApp.Api.Models;
 
 
@@ -60,5 +62,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<PlantDbContext>();
+    context.Database.Migrate(); // wichtig bei EF Core 9
+    DbSeeder.Seed(context); //initiale Werte reinschreiben (Pflanzen)
+}
 
 app.Run();

@@ -9,21 +9,24 @@ using PlantApp.Api.Models;
 
 namespace PlantApp.Api.Controller
 {
+    [Authorize]
     [ApiController]
-    [Route("api/plants")]
-    public class PlantsController : ControllerBase
+    [Route("api/account")]
+    public class UserPlantsController : ControllerBase
     {
         private readonly PlantDbContext _db;
 
-        public PlantsController(PlantDbContext db)
+        public UserPlantsController(PlantDbContext db)
         {
             _db = db;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Plant>> Get()
+        public async Task<IEnumerable<UserPlant>> Get()
         {
-            return await _db.Plants.ToListAsync();
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await _db.UserPlants.Where(p => p.UserId.Equals(userId)).ToListAsync();
         }
     }
+
 }

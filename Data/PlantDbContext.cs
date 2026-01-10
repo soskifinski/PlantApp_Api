@@ -1,12 +1,9 @@
-﻿using System.Linq;
-
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 using PlantApp.Api.Models;
 
-namespace PlantApp.Api.Context
+namespace PlantApp.Api.Data
 {
     public class PlantDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -17,6 +14,7 @@ namespace PlantApp.Api.Context
         public PlantDbContext(DbContextOptions<PlantDbContext> options)
             : base(options) { }
 
+        public DbSet<Plant> Plants => Set<Plant>();
         public DbSet<UserPlant> UserPlants => Set<UserPlant>();
         public DbSet<Models.Task> Tasks => base.Set<Models.Task>();
 
@@ -34,6 +32,12 @@ namespace PlantApp.Api.Context
                 .HasOne(up => up.User)
                 .WithMany(u => u.UserPlants)
                 .HasForeignKey(up => up.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserPlant>()
+                .HasOne(up => up.Plant)
+                .WithMany(u => u.UserPlants)
+                .HasForeignKey(up => up.PlantId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Models.Task>()
