@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantApp.Api.Context;
 
@@ -11,9 +12,11 @@ using PlantApp.Api.Context;
 namespace PlantApp.Api.Migrations
 {
     [DbContext(typeof(PlantDbContext))]
-    partial class PlantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260109073329_Plant")]
+    partial class Plant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

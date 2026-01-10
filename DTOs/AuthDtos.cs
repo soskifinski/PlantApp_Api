@@ -1,6 +1,6 @@
-﻿namespace PlantApp.Api
+﻿namespace PlantApp.Api.DTOs
 {
-    public class Dtos
+    public class AuthDtos
     {
         public record RegisterDto(string Email, string Password);
         public record LoginDto(string Email, string Password);

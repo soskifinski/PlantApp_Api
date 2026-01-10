@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlantApp.Api.Controller;
 using PlantApp.Api.Models;
 
-using static PlantApp.Api.Dtos;
+using static PlantApp.Api.DTOs.AuthDtos;
 
 [ApiController]
 [Route("api/auth")]
